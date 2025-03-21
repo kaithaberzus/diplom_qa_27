@@ -2,13 +2,9 @@ import requests
 import data
 import configuration
 def get_new_order_track():
-    response=requests.post(configuration.main_link+configuration.create_order, 
+    return requests.post(configuration.MAIN_LINK+configuration.CREATE_ORDER, 
                          json=data.order_structure)
-    return response.json()['track']
-track=get_new_order_track()
-#print(track)
-def get_new_order_by_track(track):
-    response_1= requests.get(configuration.main_link+configuration.get_order_by_track, params={"t":track})
-    return response_1
-#order_response=get_new_order_by_track(track)
-#print(order_response.status_code)
+response=get_new_order_track()
+print(response.json()["track"])
+def get_new_order_by_track(order_track):
+    return requests.get(configuration.MAIN_LINK+configuration.GET_ORDER_BY_TRACK, params={"t":order_track})
